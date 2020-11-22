@@ -2,10 +2,13 @@ import React from 'react';
 import { useFormik } from 'formik';
 
 
-
-const url = window.location.href;
+var url = window.location.href;
 var n = url.lastIndexOf('/');
-const total = url.substring(n + 1);
+var total = url.substring(n + 1);
+
+
+const getNumeroPedido = () =>
+  Math.floor(Math.random() * 100) + 1;
 
 
 // A custom validation function. This must return an object
@@ -121,11 +124,12 @@ const CheckoutForm = () => {
 	   cidadeCartao: '',
 	   bairroCartao: '',
 	   cepCartao: '',
-	   valorCompra:{total},
+	   valorCompra:'',
      },
 	 validate,
      onSubmit: values => {
-       alert("Compra Concluída e entrega ao destino.");
+       alert("Seu pedido número " + JSON.stringify(getNumeroPedido()) + " foi realizado com sucesso!");
+	   window.location="/";
      },
    });
    
@@ -135,8 +139,8 @@ const CheckoutForm = () => {
      <form onSubmit={formik.handleSubmit}>
 	 <div class="form-div">
 	 <div><h2>Dados do Usuário</h2></div>
-		<div>
-       <label htmlFor="nome">Nome:</label>
+		<div class="row">
+       <label htmlFor="nome" class="formLabel">Nome:</label>
        <input
          id="nome"
          name="nome"
@@ -146,8 +150,8 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.nome ? <div>{formik.errors.nome}</div> : null}
 	   </div>
-	   <div>
-       <label htmlFor="cpf">CPF:</label>
+	   <div class="row">
+       <label htmlFor="cpf" class="formLabel">CPF:</label>
        <input
          id="cpf"
          name="cpf"
@@ -157,7 +161,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.cpf ? <div>{formik.errors.cpf}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="email">Email:</label>
        <input
          id="email"
@@ -172,7 +176,7 @@ const CheckoutForm = () => {
 	   
 	   <div class="form-div">
 	   <h2>Entrega</h2>
-	   <div>
+	   <div class="row">
        <label htmlFor="enderecoEntrega">Endereço:</label>
        <input
          id="enderecoEntrega"
@@ -183,7 +187,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.enderecoEntrega ? <div>{formik.errors.enderecoEntrega}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="numeroEntrega">Número:</label>
        <input
          id="numeroEntrega"
@@ -194,7 +198,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.numeroEntrega ? <div>{formik.errors.numeroEntrega}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="estadoEntrega">Estado:</label>
        <input
          id="estadoEntrega"
@@ -205,7 +209,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.estadoEntrega ? <div>{formik.errors.estadoEntrega}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="cidadeEntrega">Cidade:</label>
        <input
          id="cidadeEntrega"
@@ -216,7 +220,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.cidadeEntrega ? <div>{formik.errors.cidadeEntrega}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="bairroEntrega">Bairro:</label>
        <input
          id="bairroEntrega"
@@ -227,7 +231,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.bairroEntrega ? <div>{formik.errors.bairroEntrega}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="cepEntrega">CEP:</label>
        <input
          id="cepEntrega"
@@ -243,7 +247,7 @@ const CheckoutForm = () => {
 	   
 	   <div class="form-div">
 	   <h2>Dados do Cartão</h2>
-	   <div>
+	   <div class="row">
        <label htmlFor="numeroCartao">Número do Cartão:</label>
        <input
          id="numeroCartao"
@@ -254,7 +258,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.numeroCartao ? <div>{formik.errors.numeroCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="emissaoCartao">Emissão:</label>
        <input
          id="emissaoCartao"
@@ -265,7 +269,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.emissaoCartao ? <div>{formik.errors.emissaoCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="validadeCartao">Validade:</label>
        <input
          id="validadeCartao"
@@ -276,7 +280,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.validadeCartao ? <div>{formik.errors.validadeCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="codigoSegurancaCartao">Código de Segurança:</label>
        <input
          id="codigoSegurancaCartao"
@@ -287,7 +291,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.codigoSegurancaCartao ? <div>{formik.errors.codigoSegurancaCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="enderecoCartao">Endereço:</label>
        <input
          id="enderecoCartao"
@@ -298,7 +302,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.enderecoCartao ? <div>{formik.errors.enderecoCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="numeroEnderecoCartao">Número:</label>
        <input
          id="numeroEnderecoCartao"
@@ -309,7 +313,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.numeroEnderecoCartao ? <div>{formik.errors.numeroEnderecoCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="estadoCartao">Estado:</label>
        <input
          id="estadoCartao"
@@ -320,7 +324,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.estadoCartao ? <div>{formik.errors.estadoCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="cidadeCartao">Cidade:</label>
        <input
          id="cidadeCartao"
@@ -331,7 +335,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.cidadeCartao ? <div>{formik.errors.cidadeCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="bairroCartao">Bairro:</label>
        <input
          id="bairroCartao"
@@ -342,7 +346,7 @@ const CheckoutForm = () => {
        />
 	   {formik.errors.bairroCartao ? <div>{formik.errors.bairroCartao}</div> : null}
 	   </div>
-	   <div>
+	   <div class="row">
        <label htmlFor="cepCartao">CEP:</label>
        <input
          id="cepCartao"

@@ -17,6 +17,7 @@ const defaultHistory = createBrowserHistory();
 class App extends React.Component {
   constructor(props) {
     super(props);
+	
     this.state = {
       total: '',
       loading: false,
@@ -24,10 +25,6 @@ class App extends React.Component {
       
     };
   }
-
-  
-
-  
 
   render() {
     const {
@@ -52,6 +49,7 @@ class App extends React.Component {
       <Router history={this.props.history || defaultHistory}>
         <MainColumn>
           <Checkout
+		  
             total={this.setTotal}
             
             
